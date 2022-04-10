@@ -12,16 +12,16 @@ jobs:
 
       - uses: actions/checkout@v2
 
-      - name: Setup QEMU
-        uses: docker/setup-qemu-action@v1
-        with:
-          platforms: all
+      #- name: Setup QEMU
+      #  uses: docker/setup-qemu-action@v1
+      #  with:
+      #    platforms: all
 
-      - name: Setup Docker Buildx
-        id: buildx
-        uses: docker/setup-buildx-action@v1
-        with:
-          buildkitd-flags: "--debug"
+      #- name: Setup Docker Buildx
+      #  id: buildx
+      #  uses: docker/setup-buildx-action@v1
+      #  with:
+      #    buildkitd-flags: "--debug"
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v1
@@ -29,6 +29,10 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+          logout: false
+
+      - name: Use provisioned Docker Buildx builder
+        run: docker buildx use --builder builder-e74c3186-dbdb-4a4a-bf68-cc9d309cf1d0
 
       - name: Prepare
         id: prep
