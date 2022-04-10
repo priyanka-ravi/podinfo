@@ -1,16 +1,18 @@
 name: dev build and push
 
 on:
-  push:
-    branches-ignore:
-      - master
+  pull_request_target:
+    types: [labeled]
 
 jobs:
   release:
     runs-on: self-hosted
+    if: contains(github.event.pull_request.labels.*.name, 'safe to test')
     steps:
 
       - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
 
       #- name: Setup QEMU
       #  uses: docker/setup-qemu-action@v1
