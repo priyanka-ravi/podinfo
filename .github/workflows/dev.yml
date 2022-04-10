@@ -39,7 +39,7 @@ jobs:
       - name: Prepare
         id: prep
         run: |
-          BRANCH_NAME=${GITHUB_HEAD_REF##*/}
+          BRANCH_NAME=${{ github.head_ref }}
           BUILD_TS=$(date -u +'%s')
           VERSION=${BRANCH_NAME}-${BUILD_TS}-${GITHUB_SHA::8}
           if [[ $GITHUB_REF == refs/tags/* ]]; then
