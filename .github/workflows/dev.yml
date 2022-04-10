@@ -25,14 +25,6 @@ jobs:
       #  with:
       #    buildkitd-flags: "--debug"
 
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-          logout: false
-
       - name: Use provisioned Docker Buildx builder
         run: docker buildx use --builder builder-e74c3186-dbdb-4a4a-bf68-cc9d309cf1d0
 
@@ -49,6 +41,33 @@ jobs:
           echo ::set-output name=BUILD_TS::${BUILD_TS}
           echo ::set-output name=BUILD_DATE::$(date -u +'%Y-%m-%dT%H:%M:%SZ')
           echo ::set-output name=VERSION::${VERSION}
+
+      - name: Warm the cache with a new revision
+        uses: docker/build-push-action@v2
+        with:
+          push: false
+          builder: ${{ steps.buildx.outputs.name }}
+          context: .
+          file: ./Dockerfile.xx
+          platforms: linux/amd64,linux/arm/v7,linux/arm64
+          tags: |
+            ghcr.io/kingdonb/podinfo:${{ steps.prep.outputs.VERSION }}
+          labels: |
+            org.opencontainers.image.title=${{ github.event.repository.name }}
+            org.opencontainers.image.description=${{ github.event.repository.description }}
+            org.opencontainers.image.source=${{ github.event.repository.html_url }}
+            org.opencontainers.image.url=${{ github.event.repository.html_url }}
+            org.opencontainers.image.revision=${{ github.sha }}
+            org.opencontainers.image.version=${{ steps.prep.outputs.VERSION }}
+            org.opencontainers.image.created=${{ steps.prep.outputs.BUILD_DATE }}
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          logout: false
 
       - name: Publish multi-arch image
         uses: docker/build-push-action@v2
