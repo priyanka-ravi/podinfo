@@ -53,7 +53,7 @@ jobs:
       #   #logout: false
 
       - name: Log in to registry
-        run: echo "${{ secrets.PODINFO_DEV_TOKEN }}" | docker login img.hephy.pro -u ${{ secrets.PODINFO_DEV_USER }} --password-stdin
+        run: echo "${{ secrets.PODINFO_DEV_TOKEN }}" | docker login img.hephy.pro -u '${{ secrets.PODINFO_DEV_USER }}' --password-stdin
 
       - name: Publish multi-arch image
         uses: docker/build-push-action@v2
