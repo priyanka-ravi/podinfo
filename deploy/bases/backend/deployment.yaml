@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: ghcr.io/kingdonb/podinfo:6.1.4
+        image: img.hephy.pro/releases/podinfo:6.1.4
         imagePullPolicy: IfNotPresent
         ports:
         - name: http
