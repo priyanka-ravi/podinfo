@@ -7,7 +7,7 @@ backend: #http://backend-podinfo:9898/echo
 backends: []
 
 image:
-  repository: ghcr.io/kingdonb/podinfo
+  repository: img.hephy.pro/podinfo/releases
   tag: 6.1.2
   pullPolicy: IfNotPresent
 
