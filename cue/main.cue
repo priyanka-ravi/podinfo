@@ -1,7 +1,7 @@
 package main
 
 import (
-	podinfo "github.com/stefanprodan/podinfo/cue/podinfo"
+	podinfo "github.com/kingdonb/podinfo/cue/podinfo"
 )
 
 app: podinfo.#Application & {

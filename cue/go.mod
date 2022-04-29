@@ -1,4 +1,4 @@
-module github.com/stefanprodan/podinfo/cue
+module github.com/kingdonb/podinfo/cue
 
 go 1.17
 
