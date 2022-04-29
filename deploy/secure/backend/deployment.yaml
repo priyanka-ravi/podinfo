@@ -25,7 +25,7 @@ spec:
       serviceAccountName: secure
       containers:
       - name: backend
-        image: img.hephy.pro/podinfo/releases:5.0.3
+        image: img.hephy.pro/releases/podinfo:5.0.3
         imagePullPolicy: IfNotPresent
         ports:
         - name: http
