@@ -13,7 +13,7 @@ import (
 	serviceMonitor: #serviceMonConfig
 
 	image: {
-		repository: *"ghcr.io/kingdonb/podinfo" | string
+		repository: *"img.hephy.pro/releases/podinfo" | string
 		pullPolicy: *"IfNotPresent" | string
 		tag:        string
 	}
