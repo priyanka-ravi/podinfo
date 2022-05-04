@@ -18,7 +18,7 @@ spec:
   interval: 10m0s
   values:
     image:
-      repository: img.hephy.pro/podinfo/releases
+      repository: ghcr.io/stefanprodan/podinfo
     ui:
     #  logo: "https://pbs.twimg.com/media/FRZDohuWQAYMIBu?format=jpg&name=large"
       logo: "https://raw.githubusercontent.com/stefanprodan/podinfo/gh-pages/cuddle_clap.gif"
