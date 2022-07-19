@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: podinfod
-        image: ghcr.io/kingdonb/podinfo:master-8ae3c8b1-1658262917 # {"$imagepolicy": "flux-system:dev-latest"}
+        image: ghcr.io/priyanka-ravi/podinfo:dev-aba120e3-1658263689 # {"$imagepolicy": "flux-system:dev-latest"}
         imagePullPolicy: IfNotPresent
         ports:
         - name: http
